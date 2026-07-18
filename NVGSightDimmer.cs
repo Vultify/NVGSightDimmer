@@ -87,7 +87,7 @@ namespace NVGSightDimmer
             float multiplierSights = nvgOn ? _nvgBrightnessSights.Value : 1f;
             float multiplierScopes = nvgOn ? _nvgBrightnessScopes.Value : 1f;
 
-            // Collimator sights (red dots, holos) — shader uses _HDR
+            // red dots and holos, their shader exposes _HDR
             var collimators = weaponRoot.GetComponentsInChildren<CollimatorSight>(true);
             foreach (var col in collimators)
             {
@@ -95,9 +95,8 @@ namespace NVGSightDimmer
                 ApplyHdr(col.CollimatorMeshRenderer, GetBaseHdr(col.CollimatorMeshRenderer, col.CollimatorMeshRenderer.sharedMaterial), multiplierSights);
             }
 
-            // Scope reticles — shader is Custom/Crossfair, only exposes _Color.
-            // Grab material_0 from OpticRetrice via reflection (the exact material
-            // passed to CommandBuffer.DrawRenderer) and scale its color channels.
+            // scope reticle shader only exposes _Color, scale its channels instead
+            // TODO: acogs, prism scopes and some LPVOs still not dimming properly
             var opticRetrice = CameraClass.Instance?.OpticCameraManager?.OpticRetrice;
             if (opticRetrice != null && ReticleMaterialField != null)
             {
