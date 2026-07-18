@@ -1,33 +1,18 @@
 # NVG Sight Dimmer
 
-A BepInEx client mod for SPT that automatically dims sight and scope reticle brightness when night vision goggles (NVGs) are active.
+Red dots bloom like a flashbang through NVGs. This dims sight and scope reticles automatically the moment your goggles come down, and puts everything back when they come up.
 
-## Features
+## Sliders (F12)
 
-- Automatically detects when NVGs are turned on and dims sight brightness to prevent the reticle from blooming/washing out the view
-- Two independent F12 config sliders:
-  - **NVG Sight Brightness (Holo / Red Dot)** — controls collimator sights (red dots, holographics)
-  - **NVG Sight Brightness (Scopes)** — controls magnified scope reticles
-- Toggle to enable/disable auto-dimming entirely
-- Brightness automatically restores to normal when NVGs are turned off
+- **Enable Auto Dim** — the whole mod on/off
+- **NVG Sight Brightness (Holo / Red Dot)** — multiplier for collimator sights (0.01–1.0, lower = dimmer)
+- **NVG Sight Brightness (Scopes)** — multiplier for magnified scope reticles, same range
 
-## Installation
+## Known limitations
 
-Extract the `NVGSightDimmer` folder into your `BepInEx/plugins/` directory.
+- ACOG-style prism scopes (e.g. Monstrum Tactical 2x32) bake their reticle into the scope mesh as static emissive geometry — there's no shader value to turn down, so they can't be dimmed yet. On the list, along with some LPVOs.
+- The HHS-1's flip-up magnifier has no reticle of its own — it magnifies the holo dot, which the holo slider already handles.
 
-## Configuration
+## Install
 
-Press **F12** in-game to open the config menu and adjust:
-- **Enable Auto Dim** — toggle the mod on/off
-- **NVG Sight Brightness (Holo / Red Dot)** — brightness multiplier (0.01–1.0, lower = dimmer)
-- **NVG Sight Brightness (Scopes)** — brightness multiplier (0.01–1.0, lower = dimmer)
-
-## Known Limitations
-
-- ACOG-style prism scopes (e.g. Monstrum Tactical 2x32) have a reticle baked into the scope's mesh as static emissive geometry rather than a separate shader-driven element, so their brightness cannot be adjusted by this mod.
-- The HHS-1 hybrid sight's flip-up magnifier has no reticle of its own — it magnifies the existing holographic dot, which is dimmed correctly by the holo slider.
-
-## Requirements
-
-- SPT (Single Player Tarkov)
-- BepInEx
+`NVGSightDimmer` folder into `BepInEx/plugins/`. SPT 4.0.x / BepInEx 5.x.
